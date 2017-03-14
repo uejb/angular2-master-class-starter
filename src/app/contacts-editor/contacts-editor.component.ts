@@ -12,28 +12,26 @@ import { Contact } from './../models/contact';
 })
 export class ContactsEditorComponent implements OnInit {
 
-  constructor  (private route: ActivatedRoute, private router: Router  ,private contactsService : ContactsService) { }
-
- //contact: Contact = <Contact>{ address: {}};
- contact: Contact;
-
+  constructor(private route: ActivatedRoute, private router: Router, private contactsService: ContactsService) { }
+  // we need to initialize since we can't use ?. operator with ngModel
+  //contact: Contact = <Contact>{ address: {}};
+  contact: Contact;
 
   ngOnInit() {
-    this.contactsService.getContact( this.route.snapshot.params['id'] )
+    this.contactsService.getContact(this.route.snapshot.params['id'])
       .subscribe(contact => this.contact = contact);
   }
 
 
-cancel(contact:Contact){
-  this.goToDetails(contact); 
-}
-save(contact:Contact){
- this.contactsService.updateContact(contact).subscribe( () => this.goToDetails(contact) );
-}
+  cancel(contact: Contact) {
+    this.goToDetails(contact);
+  }
+  save(contact: Contact) {
+    this.contactsService.updateContact(contact).subscribe(() => this.goToDetails(contact));
+  }
 
-private goToDetails( contact: Contact )
-{
- this.router.navigate(['/contact', contact.id ])
-}
+  private goToDetails(contact: Contact) {
+    this.router.navigate(['/contact', contact.id])
+  }
 
 }

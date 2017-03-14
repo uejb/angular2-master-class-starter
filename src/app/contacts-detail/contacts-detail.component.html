@@ -12,7 +12,7 @@
         <dt>Website:</dt>
         <dd>{{contact?.website}}</dd>
         <dt>Birthday:</dt>
-        <dd>{{contact?.birthday}}</dd>
+        <dd>{{contact?.birthday | date:'shortDate' }}</dd> 
         <dt>Street:</dt>
         <dd>{{contact?.address.street}}</dd>
         <dt>Zip:</dt>
@@ -24,7 +24,7 @@
     <md-card-actions fxLayout fxLayoutAlign="center center">
       <a md-button  routerLink="/"   title="Go back to list">Go Back</a>
       <a md-button  routerLink="edit" title="Edit...">Edit...</a>
-      <a md-button   *ngIf="contact" [routerLink]="['/contact', contact?.id  ,'edit']"   title="Edit  {{contact?.name}} ">Edit...</a>
+      <a md-button  *ngIf="contact" [routerLink]="['/contact', contact?.id  ,'edit']"   title="Edit  {{contact?.name}} ">Edit...</a>
     </md-card-actions>
   </md-card>
 </div>

@@ -7,9 +7,17 @@ import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'trm-contacts-list',
-  template: `<md-nav-list>
+  template: `
+  <md-toolbar>
+  <md-input-container dividerColor="accent" class="trm-search-container">
+    <input mdInput type="text"  (input)="search($event.target.value)" >
+  </md-input-container>
+  <md-icon color="accent">search</md-icon>
+</md-toolbar>
+  
+  <md-nav-list>
       <a md-list-item [routerLink]="['/contact', contact.id]"
-         *ngFor="let contact of contacts | async">
+         *ngFor="let contact of contacts | async; trackBy:trackByContactId">
         <img md-list-avatar [src]="contact.image">
         <h3 md-list>{{contact.name}}</h3>
       </a>
@@ -26,10 +34,19 @@ constructor (private contactsService: ContactsService ) {
 //contactsService.getContacts().subscribe(contacts => this.contacts = contacts);
 }
 
+ngOnInit() {
+  this.contacts = this.contactsService.getContacts();
+}
+
+search(term:string ) {
+  this.contacts = this.contactsService.search(term);
+}
 
 
-  ngOnInit() {
-    this.contacts = this.contactsService.getContacts();
-  }
+
+trackByContactId(index,contact)
+{
+  return contact.id;
+}
 
 }

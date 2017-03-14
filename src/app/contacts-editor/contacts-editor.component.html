@@ -1,11 +1,9 @@
-<ng-template>
+<ng-template #loading >
   Loading....
 </ng-template> 
-
 <div class="trm-contacts-editor" *ngIf="contact; else loading" >
 
-
-  <md-card>
+<md-card>
     <md-card-title-group class="fullBleed editing">
       <img md-card-md-image [src]="contact?.image || ''">
       <md-card-title>{{contact?.name}}</md-card-title>

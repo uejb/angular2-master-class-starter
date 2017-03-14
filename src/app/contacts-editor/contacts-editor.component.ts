@@ -14,7 +14,9 @@ export class ContactsEditorComponent implements OnInit {
 
   constructor  (private route: ActivatedRoute, private router: Router  ,private contactsService : ContactsService) { }
 
-  contact: Contact = <Contact>{ address: {}};
+ //contact: Contact = <Contact>{ address: {}};
+ contact: Contact;
+
 
   ngOnInit() {
     this.contactsService.getContact( this.route.snapshot.params['id'] )

@@ -22,8 +22,8 @@ getContacts() {
 getContact(id: string) {
    return  this.http.get(this.API_ENDPOINT + '/' + id )
       .map((res) => { return res.json(); })
-      .map((data) => { return data.item; });
-      //.delay(5000);
+      .map((data) => { return data.item; })
+      .delay(5000);
 }
 
 updateContact(contact: Contact)
